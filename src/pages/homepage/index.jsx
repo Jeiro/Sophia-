@@ -1,0 +1,30 @@
+import React, { useEffect } from 'react';
+import Header from '../../components/ui/Header';
+import Footer from '../../components/ui/Footer';
+import HeroSection from './components/HeroSection';
+import ExpertiseSection from './components/ExpertiseSection';
+import MarketInsightsSection from './components/MarketinsightsSection';
+import TestimonialSection from './components/TestimonialSection';
+import CTASection from './components/CTASection';
+
+const Homepage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main>
+        <HeroSection />
+        <ExpertiseSection />
+        <MarketInsightsSection />
+        <TestimonialSection />
+        <CTASection />
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default Homepage;
