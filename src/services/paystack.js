@@ -1,12 +1,13 @@
 // Paystack Payment Service - Works in Nigeria!
 
 const paystackPublicKey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
 
 export const paystackService = {
   // Initialize payment
   initializePayment: async (email, amount, reference) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/payments/paystack/initialize`, {
+      const response = await fetch(`${API_BASE_URL}/api/payments/paystack/initialize`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -27,7 +28,7 @@ export const paystackService = {
   // Verify payment
   verifyPayment: async (reference) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/payments/paystack/verify`, {
+      const response = await fetch(`${API_BASE_URL}/api/payments/paystack/verify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ reference })

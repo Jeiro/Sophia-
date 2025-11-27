@@ -1,10 +1,12 @@
 // Crypto Payment Service - USDT, BTC, and Apple Card
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+
 export const cryptoService = {
   // Generate crypto payment address
   generatePaymentAddress: async (paymentType, amount, orderId) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/payments/crypto/generate-address`, {
+      const response = await fetch(`${API_BASE_URL}/api/payments/crypto/generate-address`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -26,7 +28,7 @@ export const cryptoService = {
   checkPaymentStatus: async (orderId) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/payments/crypto/status/${orderId}`,
+        `${API_BASE_URL}/api/payments/crypto/status/${orderId}`,
         {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' }
@@ -52,7 +54,7 @@ export const cryptoService = {
       formData.append('amount', cardDetails.amount);
 
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/payments/apple-card/upload`,
+        `${API_BASE_URL}/api/payments/apple-card/upload`,
         {
           method: 'POST',
           body: formData
@@ -99,7 +101,7 @@ export const cryptoService = {
   convertUsdToCrypto: async (usdAmount, cryptoType) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/payments/crypto/convert`,
+        `${API_BASE_URL}/api/payments/crypto/convert`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -122,7 +124,7 @@ export const cryptoService = {
   getTransactionDetails: async (transactionHash) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/payments/crypto/transaction/${transactionHash}`,
+        `${API_BASE_URL}/api/payments/crypto/transaction/${transactionHash}`,
         {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' }
