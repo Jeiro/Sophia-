@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Icon from '../../../components/AppIcon';
+import Icon from '../../../components/Appicon';
 
 const LiveMarketWidget = () => {
   const [currentTime, setCurrentTime] = useState(new Date());

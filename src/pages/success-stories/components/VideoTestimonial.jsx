@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from '../../../components/AppImage';
-import Icon from '../../../components/AppIcon';
+import Icon from '../../../components/Appicon';
 
 const VideoTestimonial = ({ testimonial }) => {
   const [isPlaying, setIsPlaying] = useState(false);

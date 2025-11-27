@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import Button from './ui/Button';
-import Input from './ui/Input';
-import Icon from './AppIcon';
+import Button from './UI/Button';
+import Input from './UI/Input';
+import { Checkbox } from './UI/Checkbox';
+import Icon from './Appicon';
 
 /**
  * ContactForm Component

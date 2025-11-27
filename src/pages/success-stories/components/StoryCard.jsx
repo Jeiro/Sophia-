@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from '../../../components/AppImage';
-import Icon from '../../../components/AppIcon';
+import Icon from '../../../components/Appicon';
 import Button from '../../../components/UI/Button';
 
 const StoryCard = ({ story, onViewDetails }) => {

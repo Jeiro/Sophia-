@@ -10,7 +10,7 @@ import VideoTestimonial from './components/VideoTestimonial';
 import DetailModal from './components/DetailModal';
 import ComparisonChart from './components/ComparisonChart';
 import Button from '../../components/UI/Button';
-import Icon from '../../components/AppIcon';
+import Icon from '../../components/Appicon';
 
 const SuccessStories = () => {
   const [filters, setFilters] = useState({

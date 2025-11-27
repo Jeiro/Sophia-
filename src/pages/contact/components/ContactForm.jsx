@@ -3,7 +3,7 @@ import Input from '../../../components/UI/Input';
 import Select from '../../../components/UI/Select';
 import { Checkbox } from '../../../components/UI/Checkbox';
 import Button from '../../../components/UI/Button';
-import Icon from '../../../components/AppIcon';
+import Icon from '../../../components/Appicon';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({

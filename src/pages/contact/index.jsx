@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Header from '../../components/UI/Header';
 import Footer from '../../components/UI/Footer';
-import Icon from '../../components/AppIcon';
+import Icon from '../../components/Appicon';
 import Button from '../../components/UI/Button';
 import ContactMethodCard from './components/ContactMethodCard';
 import QuickFAQ from './components/QuickFAQ';
