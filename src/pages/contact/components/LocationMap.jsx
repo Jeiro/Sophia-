@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../../../components/AppIcon';
+import Icon from '../../../components/Appicon';
 
 const LocationMap = () => {
   // Mock coordinates for New York, NY

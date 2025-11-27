@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Icon from '../../../components/AppIcon';
+import Icon from '../../../components/Appicon';
 
 const QuickFAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
