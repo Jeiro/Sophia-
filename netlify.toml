@@ -10,6 +10,5 @@
   NODE_VERSION = "18"
   NPM_VERSION = "9"
 
-# Disable problematic extensions
-[[context.production.environment]]
+[context.production.environment]
   SKIP_BUILD_PLUGINS = "neon"
