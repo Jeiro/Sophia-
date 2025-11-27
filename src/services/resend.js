@@ -1,5 +1,6 @@
 // Resend Email Service
 // This service handles all email communications through Resend API with Web3Forms backup
+import logger from '../utils/logger';
 
 const RESEND_API_KEY = import.meta.env.VITE_RESEND_API_KEY;
 const BUSINESS_EMAIL = import.meta.env.VITE_BUSINESS_EMAIL || 'noreply@sophiacipherwealth.com';
@@ -19,9 +20,9 @@ export const sendBookingConfirmationEmail = async (to, bookingDetails) => {
       'realestate': 'Real Estate Investment Consultation',
       'comprehensive': 'Comprehensive Wealth Strategy',
     };
-    
-    const consultationType = bookingDetails.consultationType || 
-      consultationTypeMap[bookingDetails.consultationType] || 
+
+    const consultationType = bookingDetails.consultationType ||
+      consultationTypeMap[bookingDetails.consultationType] ||
       'Consultation';
 
     const html = `
@@ -138,10 +139,10 @@ export const sendBookingConfirmationEmail = async (to, bookingDetails) => {
     }
 
     const data = await response.json();
-    console.log('✅ Booking confirmation email sent successfully:', data);
+    logger.success('Booking confirmation email sent successfully:', data);
     return { success: true, data };
   } catch (error) {
-    console.error('❌ Error sending booking confirmation email:', error);
+    logger.error('Error sending booking confirmation email:', error);
     return { success: false, error: error.message };
   }
 };
@@ -158,9 +159,9 @@ export const sendAdminBookingNotification = async (bookingDetails) => {
       'realestate': 'Real Estate Investment Consultation',
       'comprehensive': 'Comprehensive Wealth Strategy',
     };
-    
-    const consultationType = bookingDetails.consultationType || 
-      consultationTypeMap[bookingDetails.consultationType] || 
+
+    const consultationType = bookingDetails.consultationType ||
+      consultationTypeMap[bookingDetails.consultationType] ||
       'Consultation';
 
     const priceMap = {
@@ -302,10 +303,10 @@ export const sendAdminBookingNotification = async (bookingDetails) => {
     }
 
     const data = await response.json();
-    console.log('✅ Admin notification email sent successfully:', data);
+    logger.success('Admin notification email sent successfully:', data);
     return { success: true, data };
   } catch (error) {
-    console.error('❌ Error sending admin notification:', error);
+    logger.error('Error sending admin notification:', error);
     return { success: false, error: error.message };
   }
 };
@@ -335,10 +336,10 @@ export const sendTestEmail = async (to) => {
     }
 
     const data = await response.json();
-    console.log('Test email sent:', data);
+    logger.log('Test email sent:', data);
     return { success: true, data };
   } catch (error) {
-    console.error('Error sending test email:', error);
+    logger.error('Error sending test email:', error);
     return { success: false, error: error.message };
   }
 };
@@ -363,15 +364,15 @@ export const sendWebFormEmail = async (formData) => {
     });
 
     const result = await response.json();
-    
+
     if (result.success) {
-      console.log('✅ Web3Forms email sent successfully:', result);
+      logger.success('Web3Forms email sent successfully:', result);
       return { success: true, data: result };
     } else {
       throw new Error(`Web3Forms error: ${result.message || 'Unknown error'}`);
     }
   } catch (error) {
-    console.error('❌ Error sending Web3Forms email:', error);
+    logger.error('Error sending Web3Forms email:', error);
     return { success: false, error: error.message };
   }
 };

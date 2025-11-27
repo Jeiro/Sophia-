@@ -1,10 +1,11 @@
 import { createClient } from '@supabase/supabase-js';
+import logger from '../utils/logger';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('Supabase credentials not configured');
+  logger.warn('Supabase credentials not configured');
 }
 
 export const supabase = createClient(supabaseUrl || '', supabaseAnonKey || '');
@@ -48,7 +49,7 @@ export const dbService = {
   // Example: Get data
   getData: async (table, filters = {}) => {
     let query = supabase.from(table).select('*');
-    
+
     Object.keys(filters).forEach(key => {
       query = query.eq(key, filters[key]);
     });

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { cryptoService } from '../services/crypto';
+import logger from '../utils/logger';
 
 export function AdminPaymentDashboard() {
   const [appleCardPayments, setAppleCardPayments] = useState([]);
@@ -20,7 +21,7 @@ export function AdminPaymentDashboard() {
   const fetchPayments = async () => {
     try {
       setLoading(true);
-      
+
       // Fetch Apple Card payments
       const appleRes = await fetch('/api/payments/apple-card/list');
       const appleData = await appleRes.json();
@@ -31,7 +32,7 @@ export function AdminPaymentDashboard() {
       const cryptoData = await cryptoRes.json();
       setCryptoPayments(cryptoData);
     } catch (error) {
-      console.error('Error fetching payments:', error);
+      logger.error('Error fetching payments:', error);
     } finally {
       setLoading(false);
     }
@@ -53,7 +54,7 @@ export function AdminPaymentDashboard() {
       );
 
       const result = await response.json();
-      
+
       if (result.success) {
         alert(`Payment ${approved ? 'approved' : 'rejected'} successfully!`);
         setSelectedPayment(null);
@@ -61,7 +62,7 @@ export function AdminPaymentDashboard() {
         fetchPayments(); // Refresh list
       }
     } catch (error) {
-      console.error('Verification error:', error);
+      logger.error('Verification error:', error);
       alert('Error verifying payment');
     }
   };

@@ -1,11 +1,13 @@
 // Google AdSense Service
+import logger from '../utils/logger';
+
 export const adSenseService = {
   // Initialize Google AdSense
   init: () => {
     const adsenseId = import.meta.env.VITE_GOOGLE_ADSENSE_ID;
-    
+
     if (!adsenseId) {
-      console.warn('Google AdSense ID not configured');
+      logger.warn('Google AdSense ID not configured');
       return;
     }
 
@@ -22,7 +24,7 @@ export const adSenseService = {
       try {
         window.adsbygoogle.push({});
       } catch (e) {
-        console.error('AdSense push failed:', e);
+        logger.error('AdSense push failed:', e);
       }
     }
   }

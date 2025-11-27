@@ -4,7 +4,7 @@ import Select from '../../../components/UI/Select';
 import { Checkbox } from '../../../components/UI/Checkbox';
 import Button from '../../../components/UI/Button';
 import Icon from '../../../components/Appicon';
-
+import logger from '../../../utils/logger';
 
 const BookingForm = ({ consultationType, selectedDate, selectedTime, onSubmit, onBack }) => {
   const [formData, setFormData] = useState({
@@ -60,7 +60,7 @@ const BookingForm = ({ consultationType, selectedDate, selectedTime, onSubmit, o
     if (!formData?.fullName?.trim()) newErrors.fullName = 'Full name is required';
     if (!formData?.email?.trim()) {
       newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/?.test(formData?.email)) {
+    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData?.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
     if (!formData?.phone?.trim()) newErrors.phone = 'Phone number is required';
@@ -78,7 +78,7 @@ const BookingForm = ({ consultationType, selectedDate, selectedTime, onSubmit, o
     if (validateForm()) {
       setIsSubmitting(true);
       setSubmitMessage(null);
-      
+
       try {
         // Prepare booking data with consultation details
         const bookingData = {
@@ -91,7 +91,7 @@ const BookingForm = ({ consultationType, selectedDate, selectedTime, onSubmit, o
         // Send to Web3Forms with all booking information
         try {
           const webFormData = new FormData();
-          
+
           webFormData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "85159b86-4c6c-4e18-9568-b6f3281a27fa");
           webFormData.append("name", formData.fullName);
           webFormData.append("email", formData.email);
@@ -105,7 +105,7 @@ const BookingForm = ({ consultationType, selectedDate, selectedTime, onSubmit, o
           webFormData.append("specific_goals", formData.specificGoals);
           webFormData.append("from_name", "Consultation Booking System");
           webFormData.append("subject", `New Consultation Booking: ${bookingData.consultationType}`);
-          
+
           // Create detailed message with all information
           const bookingMessage = `
 Sophia Cipher Wealth CONSULTATION BOOKING
@@ -129,7 +129,7 @@ ${formData.specificGoals || 'None provided'}
 
 Agreed to Terms: Yes
           `;
-          
+
           webFormData.append("message", bookingMessage);
 
           const response = await fetch('https://api.web3forms.com/submit', {
@@ -138,35 +138,35 @@ Agreed to Terms: Yes
           });
 
           const result = await response.json();
-          
+
           if (result.success) {
             setSubmitMessage({
               type: 'success',
               text: '✅ Booking confirmed! We will reach out to u shorty.',
             });
-            console.log('✅ Booking submitted via Web3Forms:', result);
+            logger.success('Booking submitted via Web3Forms:', result);
           } else {
             throw new Error(result.message || 'Web3Forms submission failed');
           }
         } catch (webFormError) {
-          console.error('⚠️ Web3Forms error:', webFormError);
+          logger.warn('Web3Forms error:', webFormError);
           setSubmitMessage({
             type: 'warning',
             text: '✅ Booking received! Your confirmation will be sent shortly.',
           });
         }
-        
+
         // Proceed with form submission after a brief delay
         setTimeout(() => {
           onSubmit(bookingData);
         }, 1000);
       } catch (error) {
-        console.error('❌ Error during form submission:', error);
+        logger.error('Error during form submission:', error);
         setSubmitMessage({
           type: 'warning',
           text: '✅ Booking submitted successfully! Confirmation is being processed.',
         });
-        
+
         // Still proceed with form submission even if email fails
         setTimeout(() => {
           onSubmit({
@@ -186,13 +186,12 @@ Agreed to Terms: Yes
     <form onSubmit={handleSubmit} className="space-y-6">
       {submitMessage && (
         <div
-          className={`p-4 rounded-lg border flex items-start space-x-3 ${
-            submitMessage.type === 'success'
-              ? 'bg-success/10 border-success/30 text-success'
-              : submitMessage.type === 'warning'
+          className={`p-4 rounded-lg border flex items-start space-x-3 ${submitMessage.type === 'success'
+            ? 'bg-success/10 border-success/30 text-success'
+            : submitMessage.type === 'warning'
               ? 'bg-yellow-500/10 border-yellow-500/30 text-yellow-700'
               : 'bg-destructive/10 border-destructive/30 text-destructive'
-          }`}
+            }`}
         >
           <Icon
             name={submitMessage.type === 'success' ? 'CheckCircle2' : submitMessage.type === 'warning' ? 'AlertCircle' : 'XCircle'}
@@ -285,11 +284,11 @@ Agreed to Terms: Yes
         <Button type="button" variant="outline" onClick={onBack} iconName="ArrowLeft" iconPosition="left" fullWidth disabled={isSubmitting}>
           Back
         </Button>
-        <Button 
-          type="submit" 
-          variant="default" 
-          iconName={isSubmitting ? "Loader" : "Calendar"} 
-          iconPosition="right" 
+        <Button
+          type="submit"
+          variant="default"
+          iconName={isSubmitting ? "Loader" : "Calendar"}
+          iconPosition="right"
           fullWidth
           disabled={isSubmitting}
         >

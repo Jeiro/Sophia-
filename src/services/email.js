@@ -1,4 +1,5 @@
 // Resend Email Service for Payment Confirmations
+import logger from '../utils/logger';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
 
@@ -18,7 +19,7 @@ export const emailService = {
       if (!response.ok) throw new Error('Failed to send email');
       return await response.json();
     } catch (error) {
-      console.error('Email send error:', error);
+      logger.error('Email send error:', error);
       throw error;
     }
   },

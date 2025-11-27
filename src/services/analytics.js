@@ -1,11 +1,13 @@
 // Google Analytics Service
+import logger from '../utils/logger';
+
 export const analyticsService = {
   // Initialize Google Analytics
   init: () => {
     const gaId = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
-    
+
     if (!gaId) {
-      console.warn('Google Analytics ID not configured');
+      logger.warn('Google Analytics ID not configured');
       return;
     }
 

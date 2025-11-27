@@ -1,4 +1,5 @@
 // Paystack Payment Service - Works in Nigeria!
+import logger from '../utils/logger';
 
 const paystackPublicKey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
@@ -20,7 +21,7 @@ export const paystackService = {
       if (!response.ok) throw new Error('Failed to initialize payment');
       return await response.json();
     } catch (error) {
-      console.error('Paystack initialization error:', error);
+      logger.error('Paystack initialization error:', error);
       throw error;
     }
   },
@@ -37,7 +38,7 @@ export const paystackService = {
       if (!response.ok) throw new Error('Failed to verify payment');
       return await response.json();
     } catch (error) {
-      console.error('Payment verification error:', error);
+      logger.error('Payment verification error:', error);
       throw error;
     }
   },
@@ -53,12 +54,12 @@ export const paystackService = {
         key: paystackPublicKey,
         accessCode: accessCode,
         onClose: () => {
-          console.log('Payment modal closed');
+          logger.log('Payment modal closed');
           if (onClose) onClose();
           reject(new Error('Payment cancelled'));
         },
         onSuccess: (transaction) => {
-          console.log('Payment successful:', transaction);
+          logger.log('Payment successful:', transaction);
           resolve(transaction);
         }
       }).openIframe();

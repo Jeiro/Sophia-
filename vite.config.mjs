@@ -9,7 +9,16 @@ export default defineConfig({
   // comment this out if that isn't relevant for your project
   build: {
     outDir: "build",
-    chunkSizeWarningLimit: 2000,
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['@radix-ui/react-slot', 'framer-motion', 'lucide-react', 'clsx', 'tailwind-merge'],
+          charts: ['recharts', 'd3'],
+        },
+      },
+    },
   },
   plugins: [tsconfigPaths(), react(), tagger()],
   server: {

@@ -4,6 +4,7 @@ import Select from '../../../components/UI/Select';
 import { Checkbox } from '../../../components/UI/Checkbox';
 import Button from '../../../components/UI/Button';
 import Icon from '../../../components/Appicon';
+import logger from '../../../utils/logger';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -99,7 +100,7 @@ const ContactForm = () => {
 
       // If you have a backend endpoint, use it here
       // await fetch('/api/send-email', { method: 'POST', body: JSON.stringify(emailData) });
-      
+
       setTimeout(() => {
         setIsSubmitting(false);
         setSubmitSuccess(true);
@@ -118,7 +119,7 @@ const ContactForm = () => {
         }, 5000);
       }, 1500);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      logger.error('Error submitting form:', error);
       setIsSubmitting(false);
     }
   };
@@ -213,9 +214,8 @@ const ContactForm = () => {
             onChange={(e) => handleChange('message', e?.target?.value)}
             placeholder="Tell us about your investment goals, questions, or consultation needs..."
             rows={6}
-            className={`w-full px-4 py-3 rounded-md border ${
-              errors?.message ? 'border-error' : 'border-input'
-            } bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-300 resize-none`}
+            className={`w-full px-4 py-3 rounded-md border ${errors?.message ? 'border-error' : 'border-input'
+              } bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-300 resize-none`}
           />
           {errors?.message && (
             <p className="mt-1.5 text-sm text-error">{errors?.message}</p>

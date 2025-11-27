@@ -3,6 +3,7 @@ import Button from './UI/Button';
 import Input from './UI/Input';
 import { Checkbox } from './UI/Checkbox';
 import Icon from './Appicon';
+import logger from '../utils/logger';
 
 /**
  * ContactForm Component
@@ -45,7 +46,7 @@ export default function ContactForm({ onSuccess, onError, title, description, sh
 
     try {
       const webFormData = new FormData();
-      
+
       // Add all form fields to FormData
       webFormData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "85159b86-4c6c-4e18-9568-b6f3281a27fa");
       webFormData.append("name", formData.name);
@@ -61,28 +62,28 @@ export default function ContactForm({ onSuccess, onError, title, description, sh
       });
 
       const data = await response.json();
-      
-      console.log("Web3Forms Response:", data);
+
+      logger.log("Web3Forms Response:", data);
 
       if (data.success) {
         setResult("success");
         setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-        
+
         if (onSuccess) {
           onSuccess();
         }
-        
+
         // Clear success message after 5 seconds
         setTimeout(() => setResult(""), 5000);
       } else {
         setResult("error");
-        console.error("Web3Forms Error:", data.message);
+        logger.error("Web3Forms Error:", data.message);
         if (onError) {
           onError(data.message || "Failed to send message");
         }
       }
     } catch (error) {
-      console.error("Form submission error:", error);
+      logger.error("Form submission error:", error);
       setResult("error");
       if (onError) {
         onError(error.message);
