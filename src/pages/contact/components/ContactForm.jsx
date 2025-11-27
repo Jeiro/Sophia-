@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Input from '../../../components/ui/Input';
-import Select from '../../../components/ui/Select';
-import { Checkbox } from '../../../components/ui/Checkbox';
-import Button from '../../../components/ui/Button';
+import Input from '../../../components/UI/Input';
+import Select from '../../../components/UI/Select';
+import { Checkbox } from '../../../components/UI/Checkbox';
+import Button from '../../../components/UI/Button';
 import Icon from '../../../components/AppIcon';
 
 const ContactForm = () => {

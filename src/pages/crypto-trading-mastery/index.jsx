@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import Header from '../../components/ui/Header';
-import Footer from '../../components/ui/Footer';
+import Header from '../../components/UI/Header';
+import Footer from '../../components/UI/Footer';
 import HeroSection from './components/HeroSection';
 import LiveMarketWidget from './components/LiveMarketWidget';
 import TradingPhilosophy from './components/TradingPhilosophy';

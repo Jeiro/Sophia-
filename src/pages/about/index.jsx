@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import Header from '../../components/ui/Header';
-import Footer from '../../components/ui/Footer';
+import Header from '../../components/UI/Header';
+import Footer from '../../components/UI/Footer';
 import HeroSection from './components/HeroSection';
 import JourneyTimeline from './components/JourneyTimeline';
 import PhilosophySection from './components/PhilosophySection';

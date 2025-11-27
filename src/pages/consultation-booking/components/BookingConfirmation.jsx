@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from '../../../components/AppIcon';
-import Button from '../../../components/ui/Button';
+import Button from '../../../components/UI/Button';
 import { Link } from 'react-router-dom';
 
 const BookingConfirmation = ({ bookingDetails }) => {

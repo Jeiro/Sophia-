@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import Header from '../../components/ui/Header';
-import Footer from '../../components/ui/Footer';
+import Header from '../../components/UI/Header';
+import Footer from '../../components/UI/Footer';
 import Icon from '../../components/AppIcon';
-import Button from '../../components/ui/Button';
+import Button from '../../components/UI/Button';
 import ConsultationTypeCard from './components/ConsulationTypeCard';
 import TimeSlotSelector from './components/TimeSlotSelector';
 import BookingForm from './components/BookingForm';

@@ -1,6 +1,6 @@
 import React from 'react';
-import Select from '../../../components/ui/Select';
-import Button from '../../../components/ui/Button';
+import Select from '../../../components/UI/Select';
+import Button from '../../../components/UI/Button';
 
 const FilterBar = ({ filters, onFilterChange, onReset }) => {
   const investmentTypeOptions = [

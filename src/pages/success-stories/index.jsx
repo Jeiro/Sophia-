@@ -1,15 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import Header from '../../components/ui/Header';
-import Footer from '../../components/ui/Footer';
+import Header from '../../components/UI/Header';
+import Footer from '../../components/UI/Footer';
 import StoryCard from './components/StoryCard';
 import FilterBar from './components/FilterBar';
 import StatsOverview from './components/StatsOverview';
 import VideoTestimonial from './components/VideoTestimonial';
 import DetailModal from './components/DetailModal';
 import ComparisonChart from './components/ComparisonChart';
-import Button from '../../components/ui/Button';
+import Button from '../../components/UI/Button';
 import Icon from '../../components/AppIcon';
 
 const SuccessStories = () => {

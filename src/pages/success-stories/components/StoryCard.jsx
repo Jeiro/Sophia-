@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from '../../../components/AppImage';
 import Icon from '../../../components/AppIcon';
-import Button from '../../../components/ui/Button';
+import Button from '../../../components/UI/Button';
 
 const StoryCard = ({ story, onViewDetails }) => {
   return (
