@@ -9,6 +9,3 @@
 [build.environment]
   NODE_VERSION = "18"
   NPM_VERSION = "9"
-
-[context.production.environment]
-  SKIP_BUILD_PLUGINS = "neon"
