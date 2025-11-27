@@ -1,0 +1,15 @@
+# Netlify Build Configuration
+# This ensures proper build settings for the Sophia Cipher Wealth project
+
+[build]
+  command = "npm run build"
+  publish = "build"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
+
+# Disable problematic extensions
+[[context.production.environment]]
+  SKIP_BUILD_PLUGINS = "neon"
