@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes as RouterRoutes, Route } from "react-router-dom";
-import ScrollToTop from "components/ScrollToTop";
-import ErrorBoundary from "components/ErrorBoundary";
-import NotFound from "pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
+import ErrorBoundary from "./components/ErrorBoundary";
+import NotFound from "./pages/NotFound";
 import ConsultationBooking from './pages/consultation-booking';
 import Contact from './pages/contact';
 import CryptoTradingMastery from './pages/crypto-trading-mastery';
