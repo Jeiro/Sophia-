@@ -5,7 +5,7 @@
  * All calls go through your backend API for security
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
 
 export const communicationService = {
   // Resend - Email Service

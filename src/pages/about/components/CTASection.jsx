@@ -1,13 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Icon from '../../../components/Appicon';
-import Button from '../../../components/ui/Button';
+import React from "react";
+import { Link } from "react-router-dom";
+import Button from "../../../components/UI/Button";
+import Icon from "../../../components/Appicon";
 
 const CTASection = () => {
   const contactMethods = [
     {
       icon: "Calendar",
-      title: "Schedule Consultation",
+      title: "Book Consultation",
       description: "Book a personalized strategy session",
       link: "/consultation-booking",
       color: "primary"
@@ -42,15 +42,15 @@ const CTASection = () => {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
           {contactMethods?.map((method, index) => (
-            <Link 
+            <Link
               key={index}
               to={method?.link}
               className="bg-card rounded-xl p-8 border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group text-center"
             >
               <div className={`w-16 h-16 rounded-2xl bg-${method?.color}/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                <Icon 
-                  name={method?.icon} 
-                  size={32} 
+                <Icon
+                  name={method?.icon}
+                  size={32}
                   color={`var(--color-${method?.color})`}
                   strokeWidth={2}
                 />
@@ -76,10 +76,10 @@ const CTASection = () => {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/consultation-booking">
-              <Button 
-                variant="default" 
-                size="lg" 
-                iconName="Calendar" 
+              <Button
+                variant="default"
+                size="lg"
+                iconName="Calendar"
                 iconPosition="left"
                 fullWidth
               >
@@ -87,10 +87,10 @@ const CTASection = () => {
               </Button>
             </Link>
             <Link to="/success-stories">
-              <Button 
-                variant="outline" 
-                size="lg" 
-                iconName="TrendingUp" 
+              <Button
+                variant="outline"
+                size="lg"
+                iconName="TrendingUp"
                 iconPosition="left"
                 fullWidth
               >
